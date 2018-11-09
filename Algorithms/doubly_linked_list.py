@@ -3,6 +3,10 @@
 
 class Node:
     '''Node Structure for Doubly Linked List'''
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+        self.previous = None
 
 
 class DLL:
