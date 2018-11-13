@@ -9,22 +9,29 @@ def start():
 
     if(_start.lower() == "y" or _start.lower() == "yes"):
         gameWorld.gameStart()
+        gameWorld.createWorld()
         gameWorld.displayVisibleWorld()
-
         while(1):
-            inputValue = msvcrt.getch().decode("utf-8")
-            if(inputValue == "q"):
-                break
-
-            game(gameWorld, inputValue)
+            try:
+                inputValue = msvcrt.getch().decode("utf-8")
+                if(inputValue == "q"):
+                    break
+                game(gameWorld, inputValue)
+            except:
+                print("WRONG INPUT")
+                gameWorld.showHelp()
+            
 
 def game(gameWorld, inputValue):
     switcher = {
         "a" : gameWorld.turnLeft,
         "d" : gameWorld.turnRight,
         "w" : gameWorld.moveForward,
+        "s" : gameWorld.moveBack,
         "c" : gameWorld.displayEntireWorld,
+        "v" : gameWorld.displayVisibleWorld,
     }
+    
     switcher.get(inputValue.lower(), lambda: "Invalid Input")()
     
 start()
