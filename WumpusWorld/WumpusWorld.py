@@ -1,5 +1,6 @@
 from texttable import Texttable
 from random import randint
+import os
 
 
 class Coordinate:
@@ -19,7 +20,7 @@ class Coordinate:
 
 
 class GameWorld:
-    _PLAYER = "A"
+    _PLAYER = "U"
     _WUMPUS = "W"
     _GOLD = "G"
     _PIT = "P"
@@ -32,130 +33,6 @@ class GameWorld:
         self.positionA = ""
         self.positionW = ""
         self.positionG = ""
-
-    def displayEntireWorld(self):
-        '''This should display the game state to the screen'''
-        # print("This is Entire World")
-        self.__createTable(self.world)
-
-    def displayVisibleWorld(self):
-        '''Displays all squares one away from the player'''
-        # print("Visible World")
-        visibleWorld = [[" "]*5 for _ in range(5)]
-        # Player Position Coordinate
-        xPos = self.positionA.x
-        yPos = self.positionA.y
-        visibleArray = []
-        visibleDistanceArray = [-1, 0, 1]
-
-        for x in visibleDistanceArray:
-            for y in visibleDistanceArray:
-                if(Coordinate.validateCoordinate(Coordinate, [xPos+y, yPos+x])):
-                    visibleArray.append(Coordinate([xPos+y, yPos+x]))
-
-        for coordinate in visibleArray:
-            visibleWorld[coordinate.x][coordinate.y] = self.world[coordinate.x][coordinate.y]
-
-        self.__createTable(visibleWorld)
-
-    def __createTable(self, world):
-        table = Texttable(30)
-        table.set_cols_align(["c", "c", "c", "c", "c"])
-        table.set_cols_width([3, 3, 3, 3, 3])
-        table.add_rows(world, header=False)
-        print(table.draw())
-
-    def moveForward(self):
-        '''Move the player forward one square in the direction they are facing'''
-        # print("Forward")
-        newXPos = self.positionA.x - 1
-        newYPos = self.positionA.y
-        moveCoordinate = Coordinate([newXPos, newYPos])
-        if(self.amIAlive(moveCoordinate)):
-            if(self.haveIWon(moveCoordinate)):
-                print("You have got the Gold")
-                return True
-            self.world[moveCoordinate.x][moveCoordinate.y] = self._PLAYER
-            self.world[self.positionA.x][self.positionA.y] = " "
-            self.positionA = moveCoordinate
-            self.displayVisibleWorld()
-        else:
-            print("DEAD")
-            return True
-
-    def turnLeft(self):
-        '''Turn the player 90 degrees to the left'''
-        # print("Left")
-        newXPos = self.positionA.x
-        newYPos = self.positionA.y - 1
-        moveCoordinate = Coordinate([newXPos, newYPos])
-        if(self.amIAlive(moveCoordinate)):
-            if(self.haveIWon(moveCoordinate)):
-                print("You have got the Gold")
-                return True
-            self.world[moveCoordinate.x][moveCoordinate.y] = self._PLAYER
-            self.world[self.positionA.x][self.positionA.y] = " "
-            self.positionA = moveCoordinate
-            self.displayVisibleWorld()
-        else:
-            print("DEAD")
-            return True
-
-    def turnRight(self):
-        '''Turn the player 90 degrees to the right'''
-        # print("Right")
-        newXPos = self.positionA.x
-        newYPos = self.positionA.y + 1
-        moveCoordinate = Coordinate([newXPos, newYPos])
-        if(self.amIAlive(moveCoordinate)):
-            if(self.haveIWon(moveCoordinate)):
-                print("You have got the Gold")
-                return True
-            self.world[moveCoordinate.x][moveCoordinate.y] = self._PLAYER
-            self.world[self.positionA.x][self.positionA.y] = " "
-            self.positionA = moveCoordinate
-            self.displayVisibleWorld()
-        else:
-            print("DEAD")
-            return True
-
-    def moveBack(self):
-        '''Turn the player 90 degrees to the right'''
-        # print("Back")
-        newXPos = self.positionA.x + 1
-        newYPos = self.positionA.y
-        moveCoordinate = Coordinate([newXPos, newYPos])
-        if(self.amIAlive(moveCoordinate)):
-            if(self.haveIWon(moveCoordinate)):
-                print("You have got the Gold")
-                return True
-            self.world[moveCoordinate.x][moveCoordinate.y] = self._PLAYER
-            self.world[self.positionA.x][self.positionA.y] = " "
-            self.positionA = moveCoordinate
-            self.displayVisibleWorld()
-        else:
-            print("DEAD")
-            return True
-
-    def haveIWon(self, moveCoordinate):
-        '''returns true or false if the player has won'''
-        # print("Won")
-        roomContent = self.world[moveCoordinate.x][moveCoordinate.y]
-        if (roomContent):
-            if roomContent == self._GOLD:
-                return True
-        return False
-
-    def amIAlive(self, moveCoordinate):
-        '''returns true or false depending on if player hit a wumpus or pit'''
-        # print("Alive")
-        roomContent = self.world[moveCoordinate.x][moveCoordinate.y]
-        if (roomContent):
-            if roomContent == self._PIT:
-                return False
-            if roomContent == self._WUMPUS:
-                return False
-        return True
 
     def createWorld(self):
         coordinateValue = self.__generateCoordinates()
@@ -182,6 +59,97 @@ class GameWorld:
                     self.world[value.x][value.y] = self._GOLD
                     self.positionG = value
 
+    def displayEntireWorld(self):
+        '''This should display the game state to the screen'''
+        # print("This is Entire World")
+        self.__createTable(self.world)
+
+    def displayVisibleWorld(self):
+        '''Displays all squares one away from the player'''
+        # print("Visible World")
+        visibleWorld = [[" "]*5 for _ in range(5)]
+        # Player Position Coordinate
+        xPos = self.positionA.x
+        yPos = self.positionA.y
+        visibleArray = []
+        visibleDistanceArray = [-1, 0, 1]
+
+        for x in visibleDistanceArray:
+            for y in visibleDistanceArray:
+                if(Coordinate.validateCoordinate(Coordinate, [xPos+y, yPos+x])):
+                    visibleArray.append(Coordinate([xPos+y, yPos+x]))
+
+        for coordinate in visibleArray:
+            visibleWorld[coordinate.x][coordinate.y] = self.world[coordinate.x][coordinate.y]
+
+        self.__createTable(visibleWorld)
+
+    def moveForward(self):
+        '''Move the player forward one square in the direction they are facing'''
+        # print("Forward")
+        newXPos = self.positionA.x - 1
+        newYPos = self.positionA.y
+        moveCoordinate = Coordinate([newXPos, newYPos])
+        return self.__move(moveCoordinate)
+
+    def moveLeft(self):
+        '''Move the player to the left'''
+        # print("Left")
+        newXPos = self.positionA.x
+        newYPos = self.positionA.y - 1
+        moveCoordinate = Coordinate([newXPos, newYPos])
+        return self.__move(moveCoordinate)
+
+    def moveRight(self):
+        '''Move the player to the right'''
+        # print("Right")
+        newXPos = self.positionA.x
+        newYPos = self.positionA.y + 1
+        moveCoordinate = Coordinate([newXPos, newYPos])
+        return self.__move(moveCoordinate)
+
+    def moveBack(self):
+        '''Move the player a step back'''
+        # print("Back")
+        newXPos = self.positionA.x + 1
+        newYPos = self.positionA.y
+        moveCoordinate = Coordinate([newXPos, newYPos])
+        return self.__move(moveCoordinate)
+
+    def haveIWon(self, moveCoordinate):
+        '''returns true or false if the player has won'''
+        # print("Won")
+        roomContent = self.world[moveCoordinate.x][moveCoordinate.y]
+        if (roomContent):
+            if roomContent == self._GOLD:
+                return True
+        return False
+
+    def amIAlive(self, moveCoordinate):
+        '''returns true or false depending on if player hit a wumpus or pit'''
+        # print("Alive")
+        roomContent = self.world[moveCoordinate.x][moveCoordinate.y]
+        if (roomContent):
+            if roomContent == self._PIT:
+                return False
+            if roomContent == self._WUMPUS:
+                return False
+        return True
+
+    def __move(self, moveCoordinate):
+        if(self.amIAlive(moveCoordinate)):
+            if(self.haveIWon(moveCoordinate)):
+                print("You have got the Gold")
+                return True
+            self.world[moveCoordinate.x][moveCoordinate.y] = self._PLAYER
+            self.world[self.positionA.x][self.positionA.y] = " "
+            self.positionA = moveCoordinate
+            os.system('cls')
+            self.displayVisibleWorld()
+        else:
+            print("DEAD")
+            return True
+
     def __pits(self):
         coordinateValue = self.__generateCoordinates()
         numberOfPits = randint(1, 10)
@@ -200,9 +168,18 @@ class GameWorld:
             while (x, y) in self.__seen:
                 x, y = randint(min, max), randint(min, max)
 
+    def __createTable(self, world):
+        table = Texttable(30)
+        table.set_cols_align(["c", "c", "c", "c", "c"])
+        table.set_cols_width([3, 3, 3, 3, 3])
+        table.add_rows(world, header=False)
+        print(table.draw())
+
     def showHelp(self):
         print("\tWelcome To the WUMPUS WORLD\n\n \
-        How to play the game:\n \
+        You are Player (U). Your Job is to find the GOLD (G) \n \
+        without falling into PIT (P) or Tackling WUMPUS (W) \n \
+        How to play the game:\n\n \
         a or A should turn the player to the left\n \
         d or D should turn the player to the right\n \
         w or W should move the player forward\n \
@@ -214,5 +191,5 @@ class GameWorld:
         print("__________________________________________________________")
 
     def gameStart(self):
-        print("Hi " + self.name+"!")
+        print("\nHi " + self.name+"!")
         print("__________________________________________________________")
