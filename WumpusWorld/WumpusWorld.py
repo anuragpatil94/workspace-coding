@@ -10,9 +10,9 @@ class Coordinate:
     def validateCoordinate(self, coordinate):
         min = 0
         max = 4
-        if (coordinate[0] < 0 or coordinate[0] > 4):
+        if (coordinate[0] < min or coordinate[0] > max):
             return False
-        if (coordinate[1] < 0 or coordinate[1] > 4):
+        if (coordinate[1] < min or coordinate[1] > max):
             return False
 
         return True
@@ -35,12 +35,12 @@ class GameWorld:
 
     def displayEntireWorld(self):
         '''This should display the game state to the screen'''
-        print("This is Entire World")
+        # print("This is Entire World")
         self.__createTable(self.world)
 
     def displayVisibleWorld(self):
         '''Displays all squares one away from the player'''
-        print("Visible World")
+        # print("Visible World")
         visibleWorld = [[" "]*5 for _ in range(5)]
         # Player Position Coordinate
         xPos = self.positionA.x
@@ -58,7 +58,7 @@ class GameWorld:
 
         self.__createTable(visibleWorld)
 
-    def __createTable(self,world):
+    def __createTable(self, world):
         table = Texttable(30)
         table.set_cols_align(["c", "c", "c", "c", "c"])
         table.set_cols_width([3, 3, 3, 3, 3])
@@ -67,47 +67,95 @@ class GameWorld:
 
     def moveForward(self):
         '''Move the player forward one square in the direction they are facing'''
-        print("Forward")
-        self.world[self.positionA.x - 1][self.positionA.y] = self._PLAYER
-        self.world[self.positionA.x][self.positionA.y] = " "
-        self.positionA = Coordinate([self.positionA.x - 1, self.positionA.y])
-        self.displayVisibleWorld()
-        pass
+        # print("Forward")
+        newXPos = self.positionA.x - 1
+        newYPos = self.positionA.y
+        moveCoordinate = Coordinate([newXPos, newYPos])
+        if(self.amIAlive(moveCoordinate)):
+            if(self.haveIWon(moveCoordinate)):
+                print("You have got the Gold")
+                return True
+            self.world[moveCoordinate.x][moveCoordinate.y] = self._PLAYER
+            self.world[self.positionA.x][self.positionA.y] = " "
+            self.positionA = moveCoordinate
+            self.displayVisibleWorld()
+        else:
+            print("DEAD")
+            return True
 
     def turnLeft(self):
         '''Turn the player 90 degrees to the left'''
-        print("Left")
-
-        self.world[self.positionA.x][self.positionA.y - 1] = self._PLAYER
-        self.world[self.positionA.x][self.positionA.y] = " "
-        self.positionA = Coordinate([self.positionA.x, self.positionA.y - 1])
-        self.displayVisibleWorld()
+        # print("Left")
+        newXPos = self.positionA.x
+        newYPos = self.positionA.y - 1
+        moveCoordinate = Coordinate([newXPos, newYPos])
+        if(self.amIAlive(moveCoordinate)):
+            if(self.haveIWon(moveCoordinate)):
+                print("You have got the Gold")
+                return True
+            self.world[moveCoordinate.x][moveCoordinate.y] = self._PLAYER
+            self.world[self.positionA.x][self.positionA.y] = " "
+            self.positionA = moveCoordinate
+            self.displayVisibleWorld()
+        else:
+            print("DEAD")
+            return True
 
     def turnRight(self):
         '''Turn the player 90 degrees to the right'''
-        print("Right")
-        self.world[self.positionA.x][self.positionA.y + 1] = self._PLAYER
-        self.world[self.positionA.x][self.positionA.y] = " "
-        self.positionA = Coordinate([self.positionA.x, self.positionA.y + 1])
-        self.displayVisibleWorld()
+        # print("Right")
+        newXPos = self.positionA.x
+        newYPos = self.positionA.y + 1
+        moveCoordinate = Coordinate([newXPos, newYPos])
+        if(self.amIAlive(moveCoordinate)):
+            if(self.haveIWon(moveCoordinate)):
+                print("You have got the Gold")
+                return True
+            self.world[moveCoordinate.x][moveCoordinate.y] = self._PLAYER
+            self.world[self.positionA.x][self.positionA.y] = " "
+            self.positionA = moveCoordinate
+            self.displayVisibleWorld()
+        else:
+            print("DEAD")
+            return True
 
     def moveBack(self):
         '''Turn the player 90 degrees to the right'''
-        print("Back")
-        self.world[self.positionA.x + 1][self.positionA.y] = self._PLAYER
-        self.world[self.positionA.x][self.positionA.y] = " "
-        self.positionA = Coordinate([self.positionA.x + 1, self.positionA.y])
-        self.displayVisibleWorld()
+        # print("Back")
+        newXPos = self.positionA.x + 1
+        newYPos = self.positionA.y
+        moveCoordinate = Coordinate([newXPos, newYPos])
+        if(self.amIAlive(moveCoordinate)):
+            if(self.haveIWon(moveCoordinate)):
+                print("You have got the Gold")
+                return True
+            self.world[moveCoordinate.x][moveCoordinate.y] = self._PLAYER
+            self.world[self.positionA.x][self.positionA.y] = " "
+            self.positionA = moveCoordinate
+            self.displayVisibleWorld()
+        else:
+            print("DEAD")
+            return True
 
-    def haveIWon(self):
+    def haveIWon(self, moveCoordinate):
         '''returns true or false if the player has won'''
-        print("Won")
-        pass
+        # print("Won")
+        roomContent = self.world[moveCoordinate.x][moveCoordinate.y]
+        if (roomContent):
+            if roomContent == self._GOLD:
+                return True
+        return False
 
-    def amIAlive(self):
+    def amIAlive(self, moveCoordinate):
         '''returns true or false depending on if player hit a wumpus or pit'''
-        print("Alive")
-        pass
+        # print("Alive")
+        roomContent = self.world[moveCoordinate.x][moveCoordinate.y]
+        if (roomContent):
+            if roomContent == self._PIT:
+                return False
+            if roomContent == self._WUMPUS:
+                return False
+        return True
 
     def createWorld(self):
         coordinateValue = self.__generateCoordinates()

@@ -16,7 +16,9 @@ def start():
                 inputValue = msvcrt.getch().decode("utf-8")
                 if(inputValue == "q"):
                     break
-                game(gameWorld, inputValue)
+                result = game(gameWorld, inputValue)
+                if result:
+                    break
             except:
                 print("WRONG INPUT")
                 gameWorld.showHelp()
@@ -32,6 +34,7 @@ def game(gameWorld, inputValue):
         "v" : gameWorld.displayVisibleWorld,
     }
     
-    switcher.get(inputValue.lower(), lambda: "Invalid Input")()
+    return switcher.get(inputValue.lower(), lambda: "Invalid Input")()
+    
     
 start()
