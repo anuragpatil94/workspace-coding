@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "wumpus"
-    ]
+    ],
+    "python.formatting.provider": "black"
 }
