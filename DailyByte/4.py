@@ -17,9 +17,9 @@ TestCases:
     "coding", return true
 
 Time Complexity:
-    
+    O(n)
 Space Complexity:
-    
+    O(1)
 """
 
 
@@ -31,7 +31,6 @@ def isCapitalized(str) -> bool:
     if str == str.lower():
         return True
     return False
-    pass
 
 
 tests = {

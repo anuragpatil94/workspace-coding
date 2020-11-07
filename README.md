@@ -22,3 +22,4 @@ Practice Coding Problems Daily
 ### DailyInterviewPro
 
 1. 2020-11-04 | Linked List | Add two numbers as a linked list
+2. 2020-11-07 | String | Longest Substring without Repeating Characters
