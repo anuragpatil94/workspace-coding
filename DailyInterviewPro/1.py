@@ -116,7 +116,7 @@ while result:
 l1 = ListNode(2)
 l1.next = ListNode(7)
 l1.next.next = ListNode(4)
-
+# 4 5 6
 l2 = ListNode(1)
 l2.next = ListNode(8)
 l2.next.next = ListNode(2)
@@ -124,5 +124,5 @@ result = Solution().addTwoNumbersWithReversedNumbers(l1, l2)
 while result:
     print(result.val),
     result = result.next
-# 7 0 8
+# 3 5 7
 
