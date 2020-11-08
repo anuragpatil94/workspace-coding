@@ -18,7 +18,8 @@ Practice Coding Problems Daily
 
 ### DailyCodingProblem
 
-1. 2020-11-04 | String | Tower Of Hanoi
+1. 2020-11-04 | String | 571. Tower Of Hanoi
+2. 2020-11-08 | Array, Design | 574. Implement a bit array
 
 ### DailyInterviewPro
 
