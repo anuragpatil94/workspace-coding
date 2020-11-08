@@ -14,6 +14,7 @@ Practice Coding Problems Daily
 2. 2020-11-05 | String | Given a string, check if palidrome
 3. 2020-11-06 | String | Sequence of Moves
 4. 2020-11-07 | String | isCapitalized
+5. 2020-11-08 | String | Add Binary
 
 ### DailyCodingProblem
 
