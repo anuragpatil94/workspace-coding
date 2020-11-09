@@ -15,6 +15,7 @@ Practice Coding Problems Daily
 3. 2020-11-06 | String | Sequence of Moves
 4. 2020-11-07 | String | isCapitalized
 5. 2020-11-08 | String | Add Binary
+6. 2020-11-09 | String | Commong Prefix in List of Strings
 
 ### DailyCodingProblem
 
