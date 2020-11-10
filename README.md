@@ -16,6 +16,7 @@ Practice Coding Problems Daily
 4. 2020-11-07 | String | isCapitalized
 5. 2020-11-08 | String | Add Binary
 6. 2020-11-09 | String | Commong Prefix in List of Strings
+7. 2020-11-10 | String | Valid Palindrome with n removal
 
 ### DailyCodingProblem
 
