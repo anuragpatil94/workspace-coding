@@ -22,6 +22,7 @@ Practice Coding Problems Daily
 
 1. 2020-11-04 | String | 571. Tower Of Hanoi
 2. 2020-11-08 | Array, Design | 574. Implement a bit array
+3. 2020-11-10 | Array, Design | 575. Implement a 2D Iterator Class
 
 ### DailyInterviewPro
 
