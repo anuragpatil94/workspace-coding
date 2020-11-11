@@ -7,8 +7,9 @@ if the pattern has
 
 
 def WildCardMatching(string, pattern):
-    np = " "
+    np = ""
     found = 0
+    # Remove continuous * from the pattern
     for char in pattern:
         if char == "*" and not found:
             np += char
@@ -17,22 +18,27 @@ def WildCardMatching(string, pattern):
             np += char
             found = 0
 
-    pattern = np
+    # Adding a space before the string so that the string index starts with 1
+    pattern = " " + np
     string = " " + string
+
+    # init 2D array
     res = [[0] * (len(pattern)) for i in range(len(string))]
 
-    # Init
+    # defaults for the result
+    # since " " and " " from pattern and string are equal
     res[0][0] = 1
+    # Only if 1st letter in the pattern is *. Hardcode res to 1 because we don't
+    # traverse i=0 or j=0
     if pattern[1] == "*":
         res[0][1] = 1
 
+    # Main Algorithm
     for i in range(1, len(string)):
         for j in range(1, len(pattern)):
-            si = i
-            pj = j
-            if string[si] == pattern[pj] or pattern[pj] == "?":
+            if string[i] == pattern[j] or pattern[j] == "?":
                 res[i][j] = res[i - 1][j - 1]
-            elif pattern[pj] == "*":
+            elif pattern[j] == "*":
                 res[i][j] = res[i][j - 1] or res[i - 1][j]
 
     return res[-1][-1]
