@@ -17,6 +17,8 @@ Practice Coding Problems Daily
 5. 2020-11-08 | String | Add Binary
 6. 2020-11-09 | String | Commong Prefix in List of Strings
 7. 2020-11-10 | String | Valid Palindrome with n removal
+8. 2020-11-11 | Hashmap | Two Sum
+9. 2020-11-12 | Hashmap | Jewels and Stones
 
 ### DailyCodingProblem
 
