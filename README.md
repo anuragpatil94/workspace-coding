@@ -19,6 +19,7 @@ Practice Coding Problems Daily
 7. 2020-11-10 | String | Valid Palindrome with n removal
 8. 2020-11-11 | Hashmap | Two Sum
 9. 2020-11-12 | Hashmap | Jewels and Stones
+10. 2020-11-13 | Hashmap | Valid Anagram
 
 ### DailyCodingProblem
 
