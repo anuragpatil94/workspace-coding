@@ -21,6 +21,7 @@ Practice Coding Problems Daily
 9. 2020-11-12 | Hashmap | Jewels and Stones
 10. 2020-11-13 | Hashmap | Valid Anagram
 11. 2020-11-14 | Hashmap | First Unique Character
+12. 2020-11-15 | Hashmap | Spot The Difference
 
 ### DailyCodingProblem
 
