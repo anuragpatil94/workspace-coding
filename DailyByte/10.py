@@ -13,9 +13,9 @@ TestCases:
     s = "program", t = "function", return false
 
 Time Complexity:
-    
+    O(n+m)
 Space Complexity:
-    
+    O(n)
 """
 
 

@@ -20,6 +20,7 @@ Practice Coding Problems Daily
 8. 2020-11-11 | Hashmap | Two Sum
 9. 2020-11-12 | Hashmap | Jewels and Stones
 10. 2020-11-13 | Hashmap | Valid Anagram
+11. 2020-11-14 | Hashmap | First Unique Character
 
 ### DailyCodingProblem
 
