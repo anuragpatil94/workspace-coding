@@ -25,6 +25,7 @@ Practice Coding Problems Daily
 13. 2020-11-16 | Hashmap | Intersect the numbers
 14. 2020-11-17 | Hashmap | Uncommon Words
 15. 2020-11-18 | Linked List | Merge Two Linked List
+16. 2020-11-20 | Linked List | Delete Nth from Last
 
 ### DailyCodingProblem
 
