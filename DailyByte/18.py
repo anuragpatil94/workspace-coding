@@ -13,9 +13,9 @@ TestCases:
     1->null, return 1
 
 Time Complexity:
-    
+    O(n)
 Space Complexity:
-    
+    O(1)
 """
 
 
