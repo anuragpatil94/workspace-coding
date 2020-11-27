@@ -33,6 +33,7 @@ Practice Coding Problems Daily
 21. 2020-11-24 | Linked List | Reverse Linked List
 22. 2020-11-26 | Stack | Validate Characters
 23. 2020-11-26 | Stack | Compare Keystrokes
+24. 2020-11-27 | Stack | Remove Adjacent Duplicates
 
 ### DailyCodingProblem
 
