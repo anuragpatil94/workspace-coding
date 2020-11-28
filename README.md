@@ -34,6 +34,7 @@ Practice Coding Problems Daily
 22. 2020-11-26 | Stack | Validate Characters
 23. 2020-11-26 | Stack | Compare Keystrokes
 24. 2020-11-27 | Stack | Remove Adjacent Duplicates
+25. 2020-11-28 | Stack | Greater Elements
 
 ### DailyCodingProblem
 
