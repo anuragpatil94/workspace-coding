@@ -37,6 +37,7 @@ Practice Coding Problems Daily
 25. 2020-11-28 | Stack | Greater Elements
 26. 2020-11-30 | Class Design | Call Counter
 27. 2020-11-30 | Class Design | Moving Average
+28. 2020-12-01 | Queue | QueueStack
 
 ### DailyCodingProblem
 
