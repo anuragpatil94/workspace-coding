@@ -1,12 +1,10 @@
 """
 No: 30
-Date: 12-02-2020
+Date: 12-03-2020
 
 Problem:
-    Given the reference to the root of a binary search tree and a search value, 
-    return the reference to the node that contains the value if it exists and 
-    null otherwise.
-    Note: all values in the binary search tree will be unique.
+    Given a binary search tree, rearrange the tree such that it forms a linked 
+    list where all its values are in ascending order.
 
 TestCases:
     
@@ -18,16 +16,19 @@ Space Complexity:
 """
 
 
-def findValue(root, val):
-    cur = root
-    q = [cur]
-    while q:
-        cur = q.pop(0)
-        if cur.val == val:
-            return cur
-        if cur.left:
-            q.append(cur.left)
-        if cur.right:
-            q.append(cur.right)
-    return None
+def inOrder(node):
+    arr = []
+
+    def _inorder(node, arr):
+        if not node:
+            return
+        _inorder(node.left, arr)
+        arr.append(node.val)
+        _inorder(node.right, arr)
+
+    _inorder(node, arr)
+    # Arr to Linked List
+    listNode = []
+    for num in arr:
+        listNode.append(num)
 

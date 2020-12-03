@@ -39,6 +39,7 @@ Practice Coding Problems Daily
 27. 2020-11-30 | Class Design | Moving Average
 28. 2020-12-01 | Queue | QueueStack
 29. 2020-12-02 | Tree | Find Value
+30. 2020-12-02 | Tree | InorderLinkedList
 
 ### DailyCodingProblem
 
